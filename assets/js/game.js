@@ -58,7 +58,11 @@ document.getElementById("refreshbutton").addEventListener("click",function(){
 // drawing
 window.sinterklaas.drawing = {};
 window.sinterklaas.drawing.clear = function(){
-	window.sinterklaas.draw.clearRect(0,0,window.sinterklaas.canvas.width,window.sinterklaas.canvas.height);
+	window.sinterklaas.draw.clearRect(
+		0,
+		0,
+		window.sinterklaas.canvas.width,
+		window.sinterklaas.canvas.height );
 };
 window.sinterklaas.drawing.setPixel = function(x,y,r,g,b,a){
 	window.sinterklaas.draw.fillStyle = "rgba("+r+","+g+","+b+","+(a/255)+")";
@@ -100,7 +104,7 @@ window.sinterklaas.drawing.drawSinterklaas = function(x,y){
 			"                                                                  ",
 			"                                                                  ",
 			"                                                                  ",
-			"                                                                  ",
+			"                                        XXXX                      ",
 			"                                       XXXXXXX                    ",
 			"                                     XXXXX  XXX                   ",
 			"                                   XXXXXX     XX                  ",
@@ -122,9 +126,10 @@ window.sinterklaas.drawing.drawSinterklaas = function(x,y){
 		];
 	}else{
 		sinterklaasimage = [
+			"                                         XXX                       ",
 			"                                       XXXXXXX                    ",
-			"                                     XXXXX  XXX                   ",
-			"                                   XXXXXX     XX                  ",
+			"                                     XXXX  XXX                   ",
+			"                                   XXXXXX    XX                  ",
 			"                                 XXXXXX        XX                 ",
 			"                                XXXXXXXX        X                 ",
 			"                               XXXXXXXXX       XXX                ",
@@ -304,16 +309,20 @@ window.sinterklaas.timers.drawQueue = function(){
 	for(var x = 0 ; x < window.sinterklaas.canvas.width ; x++){
 		window.sinterklaas.drawing.setPixel(x,window.sinterklaas.timers.jump.minHeight,100,100,100,255);
 	}
-	window.sinterklaas.draw.fillText("Click left or arrow up to jump",10,10);
-	window.sinterklaas.draw.fillText("Click right or arrow down to duck",10,20);
-	window.sinterklaas.draw.fillText("Created by:",10,150);
+	window.sinterklaas.draw.fillText("Click left or arrow up to jump", 10,10);
+	window.sinterklaas.draw.fillText("Click right or arrow down to duck", 10,20);
+	window.sinterklaas.draw.fillText("Created by:", 10,150);
 	var textoffset = 65;
 	for(var u = 0 ; u < window.sinterklaas.copyright.author.length ; u++){
 		window.sinterklaas.draw.fillText(window.sinterklaas.copyright.author[u],textoffset,150);
 		textoffset += 10+window.sinterklaas.draw.measureText(window.sinterklaas.copyright.author[u]).width;
 	}
-	if(window.sinterklaas.gameover){
-		window.sinterklaas.draw.fillText("GAME OVER",100,100);
+	if (window.sinterklaas.gameover)
+	{
+		window.sinterklaas.draw.fillText( 
+			" *** GAME OVER *** ",
+			((window.sinterklaas.canvas.width - 100)/2),
+			(window.sinterklaas.canvas.height/2) );
 	}
 };
 window.sinterklaas.timers.drawQueueTime = 100;
